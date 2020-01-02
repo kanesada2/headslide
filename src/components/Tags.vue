@@ -50,7 +50,6 @@ export default {
     border-radius: 5px;
     transition: all .5s ease-in;
 }
-
 .button-nav:hover,
 .button-nav:focus {
     text-decoration: none;

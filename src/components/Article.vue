@@ -8,17 +8,17 @@
                 </p>
     </header>
         <div class="post-description">
-          <div v-for="slide in slides" :key=slide.id class="slide-description">
-              <h3>{{slide.heading}}</h3>
-               <p v-html="slide.description"></p>
-          </div>
+          <SlideDescription v-for="slide in slides" :key=slide.id :slide=slide class="slide-description">
+          </SlideDescription>
         </div>
   </section>
 </template>
 
 <script>
+import SlideDescription from '@/components/SlideDescription.vue'
 export default {
   name: "ArticleItem",
+  components:{SlideDescription},
   props: [],
   data() {
     return {
@@ -43,7 +43,7 @@ export default {
             description:"1枚目のスライドはこんな感じの内容ですねあああいいいうううえええ<br><br><br><br>テストテスト"
           },
           {
-            id:"0",
+            id:"2",
             url: "../../img/2.png",
             heading:"2枚目のスライドに対応する見出し",
             description:"Lorem ipsum 2枚目の内容内容内容"
@@ -56,11 +56,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-h3 {
-  margin: 40px 0 10px;
-  font-size: 130%;
-  font-weight: bold;
-}
 ul {
   list-style-type: none;
   padding: 0;
