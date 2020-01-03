@@ -8,7 +8,7 @@
                 </p>
     </header>
         <div class="post-description">
-          <SlideDescription v-for="slide in slides" :key=slide.id :slide=slide class="slide-description">
+          <SlideDescription v-for="slide in slides" :key=slide.id :slide=slide class="slide-description" ref="slideDetail">
           </SlideDescription>
         </div>
   </section>
@@ -47,6 +47,18 @@ export default {
             url: "../../img/2.png",
             heading:"2枚目のスライドに対応する見出し",
             description:"Lorem ipsum 2枚目の内容内容内容"
+          },
+          {
+            id:"3",
+            url: "../../img/3.png",
+            heading:"3枚目のスライドに対応する見出し",
+            description:"Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>"
+          },
+          {
+            id:"4",
+            url: "../../img/not-on-top.png",
+            heading:"4枚目のスライドに対応する見出し",
+            description:"入っているはずがないやつ"
           }
         ]
     };
