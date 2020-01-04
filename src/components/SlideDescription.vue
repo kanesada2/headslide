@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h3>{{slide.heading}}</h3>
-        <p v-html="slide.description" v-inview:on="log"></p>
+        <h3 v-inview:on="log">{{slide.heading}}</h3>
+        <p v-html="slide.description"></p>
     </div>
 </template>
 
@@ -46,8 +46,8 @@ export default {
             ~ el → dom element
         **/
         $v.enter = (el) => {
-         console.log(this.slide.url)
          this.scrollY = el
+         this.$eventHub.$emit('SlideScrolled', {url: this.slide.url});
          return true;
         }
         $v.exit = (el) => {

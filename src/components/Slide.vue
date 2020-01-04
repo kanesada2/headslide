@@ -1,16 +1,30 @@
 <template>
 <div class="slide-area" id="slide-area">
-                    <img alt="0枚目のスライド" class="img-responsive" src="../../img/0.png">
+                    <img class="img-responsive" :src="url">
 </div>
 </template>
 <script>
 export default {
     name: "Slide",
+    src: '',
     props: [],
     data() {
         return {
+            url:'/img/0.png',
+            src: require('/img/0.png')
         };
-    }
+    },
+    mounted: function () {
+    this.$eventHub.$on('SlideScrolled', this.changeSlide)
+    },
+    methods:{
+     changeSlide(e) {
+         if(this.url == e.url) return;
+         this.url = e.url;
+         //this.src = require(e.url);
+         console.log(e.src);
+     }
+ }
 }
 </script>
 
