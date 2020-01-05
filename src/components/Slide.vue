@@ -6,12 +6,9 @@
 <script>
 export default {
     name: "Slide",
-    src: '',
-    props: [],
+    props: ["url"],
     data() {
         return {
-            url:'/img/0.png',
-            src: require('/img/0.png')
         };
     },
     mounted: function () {
@@ -21,8 +18,6 @@ export default {
      changeSlide(e) {
          if(this.url == e.url) return;
          this.url = e.url;
-         //this.src = require(e.url);
-         console.log(e.src);
      }
  }
 }

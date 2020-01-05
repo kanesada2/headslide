@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h3 v-inview:on="log">{{slide.heading}}</h3>
-        <p v-html="slide.description"></p>
+        <h3>{{slide.heading}}</h3>
+        <p v-html="slide.description" v-inview:on="log"></p>
     </div>
 </template>
 

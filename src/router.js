@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import ArticleList from '@/components/ArticleList.vue'
+import AddSlide from '@/components/AddSlide.vue'
 import AddArticle from '@/components/AddArticle.vue'
 import Article from '@/components/Article.vue'
 import Tags from '@/components/Tags.vue'
@@ -20,7 +21,10 @@ export default new Router({
       },
       {
         path: '/add',
-        component: AddArticle
+        components: {
+          sidebar: AddArticle,
+          content: AddSlide
+        }
       },
       {
         path: '/post/:id',

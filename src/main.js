@@ -6,7 +6,7 @@ import vuetify from './plugins/vuetify';
 import Inview from 'vueinview'
 Vue.config.productionTip = false
 Vue.use(Inview);
-Inview.offset(200);
+Inview.threshold(0.5);
 Vue.prototype.$eventHub = new Vue(); // Global event bus
 new Vue({
   el: '#app',

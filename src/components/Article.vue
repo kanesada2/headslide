@@ -32,31 +32,31 @@ export default {
         [
           {
             id:"0",
-            url: "/img/0.png",
+            url: "https://i.imgur.com/ySEArno.jpg",
             heading:"0枚目のスライドに対応する見出し",
             description:"0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test"
           },
           {
             id:"1",
-            url: "/img/1.png",
+            url: "https://i.imgur.com/1qd0m5Y.jpg",
             heading:"1枚目のスライドに対応する見出し",
             description:"1枚目のスライドはこんな感じの内容ですねあああいいいうううえええ<br><br><br><br>テストテスト"
           },
           {
             id:"2",
-            url: "/img/2.png",
+            url: "https://i.imgur.com/3ByBObS.jpg",
             heading:"2枚目のスライドに対応する見出し",
             description:"Lorem ipsum 2枚目の内容内容内容"
           },
           {
             id:"3",
-            url: "/img/3.png",
+            url: "https://i.imgur.com/HVhUk8Y.jpg",
             heading:"3枚目のスライドに対応する見出し",
             description:"Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>"
           },
           {
             id:"4",
-            url: "/img/1.png",
+            url: "https://i.imgur.com/yqVLMQQ.jpg",
             heading:"4枚目のスライドに対応する見出し",
             description:"入っているはずがないやつ"
           }

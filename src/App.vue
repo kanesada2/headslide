@@ -6,8 +6,8 @@
                 <v-toolbar-title><a href="/" class="custom-brand">HeadSlide</a></v-toolbar-title>
                 <v-spacer></v-spacer>
 
-                <v-btn icon>
-                    <v-icon>mdi-heart</v-icon>
+                <v-btn icon to="/add" append>
+                    <v-icon>mdi-pencil-plus</v-icon>
                 </v-btn>
 
                 <v-btn icon>
@@ -25,12 +25,8 @@
                     </template>
 
                     <v-list>
-                    <v-list-item
-                        v-for="n in 5"
-                        :key="n"
-                        @click="() => {}"
-                    >
-                        <v-list-item-title>Option {{ n }}</v-list-item-title>
+                    <v-list-item>
+                        <v-list-item-title>New Post</v-list-item-title>
                     </v-list-item>
                     </v-list>
                 </v-menu>
@@ -66,11 +62,6 @@ export default {
 
 a {
     text-decoration: none;
-    color: rgb(61, 146, 201);
-}
-a:hover,
-a:focus {
-    text-decoration: underline;
 }
 
 h3 {
@@ -107,7 +98,7 @@ h3 {
 @media (min-width: 960px) {
     .content {
         padding: 2em 2em 0;
-        margin-left: 26%;
+        margin-left: 25%;
         margin-top: 64px;
     }
 
