@@ -6,9 +6,10 @@
 <script>
 export default {
     name: "Slide",
-    props: ["url"],
+    props: [],
     data() {
         return {
+            url: "https://i.imgur.com/yqVLMQQ.jpg"
         };
     },
     mounted: function () {

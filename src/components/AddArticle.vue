@@ -8,7 +8,7 @@
       <v-text-field
         v-model="title"
         :counter="50"
-        :rules="nameRules"
+        :rules="titleRules"
         label="Title"
         required
         dark
@@ -21,7 +21,7 @@
         required
         dark
       ></v-text-field>
-    <Slide v-for="slide in slides" :url="slide.url" :key="slide.id"></Slide>
+    <Slide v-for="slide in slides" :slide="slide" :key="slide.id"></Slide>
     <v-btn
       color="primary"
       class="mr-4"
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import Slide from '@/components/Slide.vue'
+import Slide from '@/components/SlideEdit.vue'
 export default {
   name: "AddArticle",
   components: {
@@ -56,7 +56,8 @@ export default {
       slides: [
           {
             id: "0",
-            url: "https://i.imgur.com/yqVLMQQ.jpg"
+            url: "https://i.imgur.com/yqVLMQQ.jpg",
+            heading: "スライドは編集画面でどう見えるか"
           }
       ]
     };

@@ -16,30 +16,7 @@ export default {
       position: 0,
     }
   },
-  mounted() {
-    window.addEventListener('scroll', this.onScroll)
-    window.addEventListener('resize', this.onResize)
-    window.addEventListener('load', ()=> {
-      this.onScroll()
-      this.onResize()
-    })
-  },
-  computed:{
-    isInScreen(){
-        return true;
-    }
-  },
   methods: {
-    onScroll () {this.scrollY = window.pageYOffset},
-    onResize () {this.height = document.documentElement.clientHeight} ,
-    getPosition () {
-      if(this.$el){
-        return this.$el.getBoundingClientRect().top +
-            this.scrollY - this.height
-        }else{
-            return 0
-        }
-    },
     log($v){
         /**
           * on and once argument only
