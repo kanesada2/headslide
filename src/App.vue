@@ -88,6 +88,12 @@ h3 {
     margin: 0;
     background: #353b48;
     color: #f5f6fa;
+    overflow: scroll;
+}
+
+.sidebar::-webkit-scrollbar {
+      display: none;
+      -webkit-appearance: none;
 }
 
 .content {

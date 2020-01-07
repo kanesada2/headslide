@@ -14,20 +14,22 @@
       clear-icon="mdi-delete"
       label="スライドの説明を入力(markdown)"
     ></v-textarea>
-    <v-btn
-      color="success"
-      class="mr-4"
-      @click="slide"
-    >
-    Save
-    </v-btn>
-    <v-btn
-      color="error"
-      class="mr-4"
-      @click="del"
-    >
-    Delete
-    </v-btn>
+    <v-layout class="justify-end">
+      <v-btn
+        color="success"
+        class="mr-4"
+        @click="slide"
+      >
+      Save
+      </v-btn>
+      <v-btn
+        color="error"
+        class="mr-4"
+        @click="del"
+      >
+      Delete
+      </v-btn>
+    </v-layout>
 </v-form>
 </v-container>
 </template>
