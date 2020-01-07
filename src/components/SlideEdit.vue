@@ -1,5 +1,5 @@
 <template>
-<v-row fruid class="slideBox">
+<v-row fruid class="slide-box">
     <v-col cols="12" sm="6"><img class="img-responsive" :src="slide.url"></v-col>
     <v-col cols="12" sm="6">
         {{slide.heading}}
@@ -39,7 +39,7 @@ export default {
     max-height: 100%;
     object-fit: scale-down;
 }
-.slideBox {
-    max-height: 120px;
+.slide-box {
+    max-height:160px;
 }
 </style>
