@@ -2,34 +2,14 @@
  <v-app>
      <div>
         <v-app-bar color="#e84118" dark flat fixed>    
-               <v-app-bar-nav-icon></v-app-bar-nav-icon>
                 <v-toolbar-title><a href="/" class="custom-brand">HeadSlide</a></v-toolbar-title>
                 <v-spacer></v-spacer>
-
-                <v-btn icon to="/add" append>
+                <v-btn icon to="/add">
                     <v-icon>mdi-pencil-plus</v-icon>
                 </v-btn>
-
                 <v-btn icon>
                     <v-icon>mdi-magnify</v-icon>
                 </v-btn>
-
-                <v-menu
-                    left
-                    bottom
-                >
-                    <template v-slot:activator="{ on }">
-                    <v-btn icon v-on="on">
-                        <v-icon>mdi-dots-vertical</v-icon>
-                    </v-btn>
-                    </template>
-
-                    <v-list>
-                    <v-list-item>
-                        <v-list-item-title>New Post</v-list-item-title>
-                    </v-list-item>
-                    </v-list>
-                </v-menu>
             </v-app-bar>
         </div>
     <v-container fluid>

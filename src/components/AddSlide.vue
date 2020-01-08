@@ -8,7 +8,11 @@
         label="スライドの見出し"
         required
   ></v-text-field>
-  <v-file-input label="スライドを選択" prepend-icon="mdi-image-size-select-actual"></v-file-input>
+  <v-file-input label="スライドを選択" prepend-icon="mdi-image-size-select-actual"
+    @change="upload"
+    accept="image/png, image/jpeg, image/gif">
+  </v-file-input>
+  <img v-if="slide.url" :src="slide.url">
   <v-textarea
       clearable
       clear-icon="mdi-delete"
@@ -39,11 +43,24 @@ export default {
   name: "AddSlide",
   data() {
     return {
-      info: {
-        title: "",
-        category: "",
+      slide: {
+        id: '',
+        heading: '',
+        description: '',
+        url: ''
       }
     };
+  },
+  methods: {
+    upload (e){
+      const storageRef = this.$firebase.storage().ref();
+      const ref = storageRef.child('images/slides/' + Date.now() + e.name);
+      ref.put(e).then(function(snap) {
+        snap.ref.getDownloadURL().then(function(url) {
+          this.slide.url = url;
+        });
+      });
+    }
   }
 };
 </script>

@@ -1,9 +1,9 @@
 <template>
-<v-row fruid class="slide-box">
+<v-row fruid>
     <v-col cols="12" sm="6"><img class="img-responsive" :src="slide.url"></v-col>
     <v-col cols="12" sm="6">
         {{slide.heading}}
-        <v-layout align-end>
+        <v-layout align-end justify-center>
             <v-btn
             color="primary"
             class="mr-4"
@@ -38,8 +38,5 @@ export default {
     max-width: 100%;
     max-height: 100%;
     object-fit: scale-down;
-}
-.slide-box {
-    max-height:160px;
 }
 </style>
