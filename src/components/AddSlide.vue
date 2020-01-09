@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { uuid } from 'uuidv4'
 export default {
   name: "AddSlide",
   data() {
@@ -54,12 +55,15 @@ export default {
   methods: {
     upload (e){
       const storageRef = this.$firebase.storage().ref();
-      const ref = storageRef.child('images/slides/' + Date.now() + e.name);
+      const ext = e.name.split('.').pop();
+      const name = uuid() + '.' +  ext;
+      const ref = storageRef.child('images/slides/' + name);
       ref.put(e).then(function(snap) {
         snap.ref.getDownloadURL().then(function(url) {
           this.slide.url = url;
         });
       });
+      console.log(name);
     }
   }
 };

@@ -69,6 +69,7 @@ h3 {
     background: #353b48;
     color: #f5f6fa;
     overflow: scroll;
+    z-index: 10;
 }
 
 .sidebar::-webkit-scrollbar {
