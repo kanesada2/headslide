@@ -1,6 +1,8 @@
 <template>
     <div class="slide-description">
-        <h3 class="slide-heading">{{slide.heading}}</h3>
+      <div class="slide-heading" id="slide-heading">
+        <h3>{{slide.heading}}</h3>
+      </div>
         <p v-html="slide.description" v-scroll="onScroll"></p>
     </div>
 </template>
@@ -11,19 +13,17 @@ export default {
   props: ["slide"],
   data() {
     return {
-     prevTop: 0 
+     prevTop: 0,
     }
   },
   methods: {
     onScroll(){
-      console.log(this.prevTop)
-      const nowTop = this.$el.getBoundingClientRect().top
-      console.log(nowTop);
-      console.log("---");
-      if(nowTop == this.prevTop){
+      const topPos = this.$el.getBoundingClientRect().top;
+      const parentTop = this.$parent.topPos
+      if(this.prevTop <= parentTop && parentTop <= this.$parent.topPos){
         this.$eventHub.$emit('SlideScrolled', {url: this.slide.url})
       }
-      this.prevTop = this.$el.getBoundingClientRect().top
+      this.prevTop = topPos;
     }
   }
 };
@@ -35,23 +35,5 @@ h3 {
   margin: 40px 0 10px;
   font-size: 130%;
   font-weight: bold;
-}
-p {
-  z-index: 0;
-}
-.slide-description{
-  z-index: 1;
-  background: #FAFAFA;
-  margin-top: 3em;
-  position: sticky;
-  top: 290px;
-  min-height: 60vh;
-}
-
-@media (min-width: 960px) {
-  .slide-description{
-    top: 64px;
-    min-height: 85vh;
-  }
 }
 </style>

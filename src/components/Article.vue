@@ -22,6 +22,7 @@ export default {
   props: [],
   data() {
     return {
+      topPos: 0,
       article:{
         id: "123123123",
         title: "ブログポストデータサンプル",
@@ -62,6 +63,9 @@ export default {
           }
         ]
     };
+  },
+  mounted: function(){
+    this.topPos = this.$el.getBoundingClientRect().top;
   }
 };
 </script>
@@ -78,5 +82,8 @@ li {
 }
 a {
   color: #42b983;
+}
+.slide-description:last-child {
+  min-height: 75vh;
 }
 </style>
