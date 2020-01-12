@@ -8,7 +8,6 @@
       <v-text-field
         v-model="title"
         :counter="50"
-        :rules="titleRules"
         label="Title"
         required
         dark
@@ -16,7 +15,6 @@
       <v-text-field
         v-model="category"
         :counter="20"
-        :rules="categoryRules"
         label="Category"
         required
         dark
@@ -56,16 +54,19 @@ export default {
         category: "",
       },
       slides: [
-          {
-            id: "0",
-            url: "https://i.imgur.com/yqVLMQQ.jpg",
-            heading: "スライドは編集画面でどう見えるか",
-            description: "ある程度以上の文字数を超えた場合は三点リーダとかで省略してほしい部分なんだけど果たしてoverflowの設定でそれができるんだかどうなんだか"
-          }
+
       ]
     };
-  }
-};
+  },
+  mounted: function () {
+    this.$eventHub.$on('SlideAdded', this.appendSlide)
+    },
+    methods:{
+      appendSlide(e) {
+          this.slides.push(e.slide);
+      }
+    }
+}
 </script>
 <style>
 

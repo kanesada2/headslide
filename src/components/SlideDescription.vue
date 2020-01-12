@@ -36,4 +36,15 @@ h3 {
   font-size: 130%;
   font-weight: bold;
 }
+.slide-description {
+  position: sticky;
+  top: 45%;
+  min-height:  90vh;
+  background: #FAFAFA;
+}
+@media (min-width: 960px) {
+  .slide-description {
+    top: 88px; 
+  }
+}
 </style>

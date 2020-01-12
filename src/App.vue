@@ -81,7 +81,7 @@ h3 {
 
 .content {
     padding: 2em 2em 0;
-    margin-top: 280px;
+    margin-top: 40%;;
 }
 
 @media (min-width: 960px) {
