@@ -6,10 +6,10 @@ import AddArticle from '@/components/AddArticle.vue'
 import Article from '@/components/Article.vue'
 import Tags from '@/components/Tags.vue'
 import Slide from '@/components/Slide.vue'
+import Login from '@/components/Login.vue'
 
 Vue.use(Router)
-
-export default new Router({
+let router = new Router({
     mode:'history',
     linkActiveClass: 'active-link',
     linkExactActiveClass: 'active-link',
@@ -26,7 +26,8 @@ export default new Router({
         components: {
           sidebar: AddArticle,
           content: AddSlide
-        }
+        },
+        meta: { requiresAuth: true }
       },
       {
         path: '/post/:id',
@@ -36,6 +37,22 @@ export default new Router({
             sidebar: Slide,
             content: Article
         }
+      },
+      {
+        path: '/login',
+        components: {
+          sidebar: Tags,
+          content: Login
+        }
       }
     ]
   })
+  export default router;
+  router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      next({ path: '/login', query: { redirect: to.fullPath }});
+      next();
+    } else {
+      next();
+    }
+  });

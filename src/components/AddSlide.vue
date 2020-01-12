@@ -58,12 +58,13 @@ export default {
       const ext = e.name.split('.').pop();
       const name = uuid() + '.' +  ext;
       const ref = storageRef.child('images/slides/' + name);
+      const instance = this;
       ref.put(e).then(function(snap) {
         snap.ref.getDownloadURL().then(function(url) {
-          this.slide.url = url;
+          console.log(instance);
+          instance.slide.url = url;
         });
       });
-      console.log(name);
     }
   }
 };

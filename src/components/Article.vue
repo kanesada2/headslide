@@ -84,6 +84,6 @@ a {
   color: #42b983;
 }
 .slide-description:last-child {
-  min-height: 75vh;
+  min-height: 100vh;
 }
 </style>
