@@ -27,13 +27,6 @@
       >
       Save
       </v-btn>
-      <v-btn
-        color="error"
-        class="mr-4"
-        @click="del"
-      >
-      Delete
-      </v-btn>
     </v-layout>
 </v-form>
 </v-container>
@@ -48,12 +41,16 @@ export default {
     return {
       file: null,
       slide: {
-        id: '',
+        no: 0,
         heading: '',
         description: '',
         url: ''
       }
     };
+  },
+  mounted: function () {
+    this.$eventHub.$on('SlideCreated', this.edit)
+    this.$eventHub.$on('SlideSelected', this.edit)
   },
   methods: {
     upload (e){
@@ -72,15 +69,9 @@ export default {
     },
     add(){
       this.$eventHub.$emit('SlideAdded', {slide:this.slide})
-      this.slide = {
-        id: '',
-        heading: '',
-        description: '',
-        url: ''
-      };
     },
-    clear(){
-      this.$refs.form.reset()
+    edit(e){
+      this.slide = e;
     }
   }
 };

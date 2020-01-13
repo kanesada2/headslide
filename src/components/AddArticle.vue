@@ -1,25 +1,23 @@
 <template>
-<v-container>
+<v-container @delSlide="delSlide">
     <v-form
       ref="form"
-      v-model="info"
-      :lazy-validation="lazy"
     >
       <v-text-field
-        v-model="title"
+        v-model="info.title"
         :counter="50"
         label="Title"
         required
         dark
       ></v-text-field>
       <v-text-field
-        v-model="category"
+        v-model="info.category"
         :counter="20"
         label="Category"
         required
         dark
       ></v-text-field>
-    <Slide v-for="slide in slides" :slide="slide" :key="slide.id"></Slide>
+    <Slide v-for="slide in slides" :slide="slide" :key="slide.no"></Slide>
     <v-layout class="justify-center">
       <v-btn
         color="primary"
@@ -49,6 +47,7 @@ export default {
   },
   data() {
     return {
+      slideCount : 0,
       info: {
         title: "",
         category: "",
@@ -60,10 +59,27 @@ export default {
   },
   mounted: function () {
     this.$eventHub.$on('SlideAdded', this.appendSlide)
-    },
-    methods:{
+    this.$eventHub.$on('delSlide', this.delSlide)
+  },
+  methods:{
       appendSlide(e) {
-          this.slides.push(e.slide);
+          this.slides.push(e.slide)
+          this.slideCount++
+      },
+      newSlide() {
+        this.$eventHub.$emit('SlideCreated', {
+          no: this.slideCount,
+          heading: '',
+          description: '',
+          url: ''
+        })
+      },
+      delSlide(no){
+        const deleted = this.slides.filter(slide => slide.no != no)
+        this.slides = deleted;
+      },
+      post() {
+
       }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-<v-row fruid>
+<v-row fruid :class="{selected: isSelected}">
     <v-col cols="12" sm="6"><img class="img-responsive" :src="slide.url"></v-col>
     <v-col cols="12" sm="6">
         {{slide.heading}}
@@ -7,14 +7,14 @@
             <v-btn
             color="primary"
             class="mr-4"
-            @click="Edit"
+            @click="edit"
             >
             <v-icon>mdi-pencil</v-icon>
             </v-btn>
             <v-btn
             color="error"
             class="mr-4"
-            @click="Delete"
+            @click="del"
             >
             <v-icon>mdi-delete</v-icon>
             </v-btn>
@@ -28,8 +28,25 @@ export default {
     props: ["slide"],
     data() {
         return {
+            isSelected: false
         };
     },
+    mounted: function () {
+        this.$eventHub.$on('SlideSelected', this.disSelect)
+  },
+    methods:{
+        edit() {
+            this.isSelected = true;
+            this.$eventHub.$emit('SlideSelected', this.slide)
+        },
+        disSelect(e) {
+            if(e == this.slide) return;
+            this.isSelected = false
+        },
+        del(){
+            this.$eventHub.$emit('delSlide', this.slide.no)
+        }
+    }
 }
 </script>
 
@@ -38,5 +55,8 @@ export default {
     max-width: 100%;
     max-height: 100%;
     object-fit: scale-down;
+}
+.selected {
+    background: #494f5a;
 }
 </style>
