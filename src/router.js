@@ -49,7 +49,7 @@ let router = new Router({
   })
   export default router;
   router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (to.matched.some(record => record.meta.requiresAuth && !Vue.prototype.$auth.LoggedIn)) {
       next({ path: '/login', query: { redirect: to.fullPath }});
       next();
     } else {

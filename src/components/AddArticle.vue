@@ -17,7 +17,7 @@
         required
         dark
       ></v-text-field>
-    <Slide v-for="slide in slides" :slide="slide" :key="slide.no"></Slide>
+    <Slide v-for="slide in slides" :slide="slide" :key="slide.no" @delSlide="delSlide"></Slide>
     <v-layout class="justify-center">
       <v-btn
         color="primary"
@@ -59,12 +59,17 @@ export default {
   },
   mounted: function () {
     this.$eventHub.$on('SlideAdded', this.appendSlide)
-    this.$eventHub.$on('delSlide', this.delSlide)
   },
   methods:{
       appendSlide(e) {
+        const targetIndex = this.slides.findIndex((slide) => slide.no == e.slide.no)
+
+        if(targetIndex === -1){
           this.slides.push(e.slide)
           this.slideCount++
+        }else{
+          this.slides.splice(targetIndex, 1, e.slide);
+        }
       },
       newSlide() {
         this.$eventHub.$emit('SlideCreated', {
@@ -75,8 +80,8 @@ export default {
         })
       },
       delSlide(no){
-        const deleted = this.slides.filter(slide => slide.no != no)
-        this.slides = deleted;
+        const targetIndex = this.slides.findIndex((slide) => slide.no == no)
+        this.slides.splice(targetIndex, 1)
       },
       post() {
 

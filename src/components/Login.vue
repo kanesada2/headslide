@@ -14,7 +14,7 @@ export default {
         onAuthStateChanged () {
             this.$firebase.auth().onAuthStateChanged( user => {
             if(!user) return;
-            this.$auth.loggedIn = true;
+            this.$auth.login();
             this.$router.push(this.$route.query.redirect);
             })
         },

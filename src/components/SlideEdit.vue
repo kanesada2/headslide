@@ -44,7 +44,7 @@ export default {
             this.isSelected = false
         },
         del(){
-            this.$eventHub.$emit('delSlide', this.slide.no)
+            this.$emit('delSlide', this.slide.no)
         }
     }
 }
