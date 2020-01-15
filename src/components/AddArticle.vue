@@ -17,7 +17,11 @@
         required
         dark
       ></v-text-field>
-    <Slide v-for="slide in slides" :slide="slide" :key="slide.no" @delSlide="delSlide"></Slide>
+    <draggable v-model="slides">
+      <transition-group>
+        <Slide v-for="slide in slides" :slide="slide" :key="slide.no" @delSlide="delSlide"></Slide>
+      </transition-group>
+    </draggable>
     <v-layout class="justify-center">
       <v-btn
         color="primary"
@@ -40,10 +44,12 @@
 
 <script>
 import Slide from '@/components/SlideEdit.vue'
+import draggable from 'vuedraggable'
 export default {
   name: "AddArticle",
   components: {
-      Slide
+      Slide,
+      draggable
   },
   data() {
     return {
@@ -57,27 +63,17 @@ export default {
       ]
     };
   },
-  mounted: function () {
-    this.$eventHub.$on('SlideAdded', this.appendSlide)
-  },
   methods:{
-      appendSlide(e) {
-        const targetIndex = this.slides.findIndex((slide) => slide.no == e.slide.no)
-
-        if(targetIndex === -1){
-          this.slides.push(e.slide)
-          this.slideCount++
-        }else{
-          this.slides.splice(targetIndex, 1, e.slide);
-        }
-      },
       newSlide() {
-        this.$eventHub.$emit('SlideCreated', {
+        const newSlide = {
           no: this.slideCount,
           heading: '',
           description: '',
           url: ''
-        })
+        }
+        this.slides.push(newSlide)
+        this.slideCount++
+        this.$eventHub.$emit('SlideSelected', newSlide)
       },
       delSlide(no){
         const targetIndex = this.slides.findIndex((slide) => slide.no == no)

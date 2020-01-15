@@ -19,15 +19,6 @@
       clear-icon="mdi-delete"
       label="スライドの説明を入力(markdown)"
     ></v-textarea>
-    <v-layout class="justify-end">
-      <v-btn
-        color="success"
-        class="mr-4"
-        @click="add"
-      >
-      Save
-      </v-btn>
-    </v-layout>
 </v-form>
 </v-container>
 </template>
@@ -49,7 +40,6 @@ export default {
     };
   },
   mounted: function () {
-    this.$eventHub.$on('SlideCreated', this.edit)
     this.$eventHub.$on('SlideSelected', this.edit)
   },
   methods: {
