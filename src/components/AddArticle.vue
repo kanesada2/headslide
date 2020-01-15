@@ -74,6 +74,7 @@ export default {
         this.slides.push(newSlide)
         this.slideCount++
         this.$eventHub.$emit('SlideSelected', newSlide)
+        console.log(this.slides);
       },
       delSlide(no){
         const targetIndex = this.slides.findIndex((slide) => slide.no == no)

@@ -13,6 +13,19 @@
 </template>
 
 <script>
+import gql from "graphql-tag";
+const GET_ARTICLES = gql`
+  query getArticles {
+    articles {
+      id
+      title
+      author
+      category
+      created_at
+      updated_at
+    }
+  }
+`
 export default {
   name: 'ArticleList',
   components: {
@@ -20,15 +33,13 @@ export default {
   data() {
     return {
       articles: [
-        {
-          id: "123123123",
-          title: "ブログポストデータサンプル",
-          author: "Nosada",
-          category: "category",
-          body: "Lorem ipsum"
-        }
       ]
     };
+  },
+  apollo: {
+    articles: {
+      query:GET_ARTICLES
+    }
   }
 }
 </script>
