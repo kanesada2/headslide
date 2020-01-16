@@ -2,13 +2,13 @@
  <v-app>
      <div>
         <v-app-bar color="#e84118" dark flat fixed>    
-                <v-toolbar-title><a href="/" class="custom-brand">HeadSlide</a></v-toolbar-title>
+                <v-toolbar-title><a href="/" class="custom-brand">Blog</a></v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn icon to="/add">
                     <v-icon>mdi-pencil-plus</v-icon>
                 </v-btn>
                 <v-btn icon>
-                    <v-icon>mdi-magnify</v-icon>
+                    <v-icon>mdi-dots-vertical</v-icon>
                 </v-btn>
             </v-app-bar>
         </div>
@@ -95,7 +95,7 @@ h3 {
         height: 100%;
         position: fixed;
         top: 64px;
-        bottom: 0;
+        padding-bottom: 64px !important;
     }
 }
 </style>

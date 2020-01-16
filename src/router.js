@@ -5,6 +5,8 @@ import AddSlide from '@/components/AddSlide.vue'
 import AddArticle from '@/components/AddArticle.vue'
 import Article from '@/components/Article.vue'
 import Tags from '@/components/Tags.vue'
+import Tagdetail from '@/components/Tagdetail.vue'
+import Search from '@/components/Search.vue'
 import Slide from '@/components/Slide.vue'
 import Login from '@/components/Login.vue'
 
@@ -17,7 +19,7 @@ let router = new Router({
       { 
         path: '/',
         components: {
-            sidebar: Tags,
+            sidebar: Search,
             content: ArticleList
         }
       },
@@ -43,6 +45,13 @@ let router = new Router({
         components: {
           sidebar: Tags,
           content: Login
+        }
+      },
+      {
+        path: '/login',
+        components: {
+          sidebar: Tagdetail,
+          content: Tags
         }
       }
     ]

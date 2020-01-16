@@ -17,27 +17,27 @@
         required
         dark
       ></v-text-field>
+      <v-layout class="button-ctrl justify-center">
+        <v-btn
+          color="primary"
+          class="mr-4"
+          @click="newSlide"
+        >
+        Add Slide
+        </v-btn>
+        <v-btn
+          color="success"
+          class="mr-4"
+          @click="post"
+        >
+      Save Post
+      </v-btn>
+    </v-layout>
     <draggable v-model="slides">
       <transition-group>
         <Slide v-for="slide in slides" :slide="slide" :key="slide.no" @delSlide="delSlide"></Slide>
       </transition-group>
     </draggable>
-    <v-layout class="justify-center">
-      <v-btn
-        color="primary"
-        class="mr-4"
-        @click="newSlide"
-      >
-      Add Slide
-      </v-btn>
-      <v-btn
-        color="success"
-        class="mr-4"
-        @click="post"
-      >
-    Save Post
-    </v-btn>
-    </v-layout>
     </v-form>
 </v-container>
 </template>
@@ -87,5 +87,7 @@ export default {
 }
 </script>
 <style>
-
+.button-ctrl {
+  margin: 1em 0 !important;
+}
 </style>
