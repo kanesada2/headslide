@@ -5,7 +5,9 @@
     <header class="post-header">
       <router-link :to="{ name : 'post', params : { id: article.id }}" class="post-title">{{article.title}}</router-link>
       <p class="post-meta">
-        By <a class="post-author" href="#">{{article.author}}</a> under <a class="post-category post-category-js" href="#">{{article.category}}</a>
+        By <a class="post-author" :href="'user/' + article.author.id">{{article.author.name}}</a>
+      <a v-for="tag_relation in article.tag_relations" :key="tag_relation.tag.id" :href="'tag/' + tag_relation.tag.id" class="post-tag">{{tag_relation.tag.name}}
+      </a>
       </p>
     </header>
   </section>
@@ -14,15 +16,23 @@
 
 <script>
 import gql from "graphql-tag";
-const GET_ARTICLES = gql`
-  query getArticles {
+const LIST_ARTICLES = gql`
+  query listArticles {
     articles {
       id
       title
-      author
-      category
       created_at
       updated_at
+      author {
+        id
+        name
+      }
+      tag_relations {
+        tag {
+          id
+          name
+        }
+      }
     }
   }
 `
@@ -38,7 +48,7 @@ export default {
   },
   apollo: {
     articles: {
-      query:GET_ARTICLES
+      query:LIST_ARTICLES
     }
   }
 }
@@ -92,7 +102,7 @@ li {
     margin: 0;
 }
 
-.post-category {
+.post-tag {
     margin: 0 0.1em;
     padding: 0.3em 1em;
     color: #fff !important;
@@ -101,8 +111,8 @@ li {
     border-radius: 16px;
 }
 
-.post-category:hover,
-.post-category:focus {
+.post-tag:hover,
+.post-tag:focus {
     text-decoration: none;
 }
 .post-author {

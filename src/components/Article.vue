@@ -1,21 +1,48 @@
 <template>
   <section class="post">
     <header class="post-header">
-            <h2 class="post-title">{{article.title}}</h2>
+      <h2 class="post-title">{{article.title}}</h2>
 
-                <p class="post-meta">
-                    By <a class="post-author" href="#">{{article.author}}</a> under <a class="post-category post-category-js" href="#">{{article.category}}</a>
-                </p>
+      <p class="post-meta">
+        By <a class="post-author" :href="'user/' + article.author.id">{{article.author.name}}</a>
+        <a v-for="tag_relation in article.tag_relations" :key="tag_relation.tag.id" :href="'tag/' + tag_relation.tag.id" class="post-tag">{{tag_relation.tag.name}}
+        </a>
+      </p>
     </header>
         <div class="post-description">
-          <SlideDescription v-for="slide in slides" :key=slide.id :slide=slide class="slide-description" ref="slideDetail">
+          <SlideDescription v-for="slide in article.slides" :key=slide.id :slide=slide class="slide-description" ref="slideDetail">
           </SlideDescription>
         </div>
   </section>
 </template>
 
 <script>
+import gql from "graphql-tag";
 import SlideDescription from '@/components/SlideDescription.vue'
+const GET_ARTICLE = gql`
+query getArticle {
+  articles_by_pk(id: 1) {
+    title
+    tag_relations {
+      tag {
+        id
+        name
+      }
+    }
+    slides {
+      order_no
+      description
+      title
+      url
+    }
+    author {
+      id
+      name
+    }
+  }
+}
+`
+
 export default {
   name: "ArticleItem",
   components:{SlideDescription},
@@ -24,48 +51,20 @@ export default {
     return {
       topPos: 0,
       article:{
-        id: "123123123",
-        title: "ブログポストデータサンプル",
-        author: "Nosada",
-        category: "category",
       },
-      slides:
-        [
-          {
-            id:"0",
-            url: "https://i.imgur.com/ySEArno.jpg",
-            heading:"0枚目のスライドに対応する見出し",
-            description:"0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test0枚目は自動生成するmediumみたいなあれでいいかもしれない、表紙スライドのやつ<br>test"
-          },
-          {
-            id:"1",
-            url: "https://i.imgur.com/1qd0m5Y.jpg",
-            heading:"1枚目のスライドに対応する見出し",
-            description:"1枚目のスライドはこんな感じの内容ですねあああいいいうううえええ<br><br><br><br>テストテスト"
-          },
-          {
-            id:"2",
-            url: "https://i.imgur.com/3ByBObS.jpg",
-            heading:"2枚目のスライドに対応する見出し",
-            description:"Lorem ipsum 2枚目の内容内容内容"
-          },
-          {
-            id:"3",
-            url: "https://i.imgur.com/HVhUk8Y.jpg",
-            heading:"3枚目のスライドに対応する見出し",
-            description:"Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br><br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum <br>Lorem ipsum "
-          },
-          {
-            id:"4",
-            url: "https://i.imgur.com/yqVLMQQ.jpg",
-            heading:"4枚目のスライドに対応する見出し",
-            description:"入っているはずがないやつ"
-          }
-        ]
     };
   },
-  mounted: function(){
-    this.topPos = this.$el.getBoundingClientRect().top;
+  apollo: {
+    article: {
+      query: GET_ARTICLE,
+      update (data) {
+          return data.articles_by_pk
+        }
+    }
+  },
+  updated: function(){
+      console.log(this.$el)
+      this.topPos = this.$el.getBoundingClientRect().top
   }
 };
 </script>
