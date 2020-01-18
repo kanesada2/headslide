@@ -20,8 +20,8 @@
 import gql from "graphql-tag";
 import SlideDescription from '@/components/SlideDescription.vue'
 const GET_ARTICLE = gql`
-query getArticle {
-  articles_by_pk(id: 1) {
+query getArticle($id: Int!) {
+  articles_by_pk(id: $id) {
     title
     tag_relations {
       tag {
@@ -57,13 +57,17 @@ export default {
   apollo: {
     article: {
       query: GET_ARTICLE,
+      variables() {
+        return {
+          id: this.$route.params.id
+        }
+      },
       update (data) {
           return data.articles_by_pk
         }
     }
   },
   updated: function(){
-      console.log(this.$el)
       this.topPos = this.$el.getBoundingClientRect().top
   }
 };
