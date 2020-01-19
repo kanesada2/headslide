@@ -3,20 +3,21 @@
     <v-form
       ref="form"
     >
-      <v-text-field
-        v-model="keyword"
-        label="キーワード"
-        dark
-      ></v-text-field>
       <v-select
         dark
-        chips
+        v-model="selected_tags"
+        :items="tags"
+        item-text="name"
+        item-value="id"
         label="タグ"
         multiple
+        color="success"
       >
-      <option v-for="tag in tags" :value="tag.id" :key="tag.id">
-          {{tag.name}}
-      </option>
+        <template v-slot:selection="{item}">
+            <v-chip color="cyan darken-1">
+                <span>{{item.name}}</span>
+            </v-chip>
+        </template>
       </v-select>
     <v-layout class="justify-right">
       <v-btn
@@ -32,6 +33,15 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
+const GET_TAGS = gql`
+    query get_tags {
+        tags {
+            id
+            name
+        }
+    }
+`
 export default {
   name: "Search",
   components: {
@@ -39,12 +49,19 @@ export default {
   data() {
     return {
         keyword: '',
-        tags: [],
+        tags: [
+        ],
+        selected_tags: []
     };
+  },
+  apollo: {
+      tags : {
+          query: GET_TAGS
+      }
   },
   methods:{
       search(){
-
+          this.$router.push({path:'search', query:{tags:this.selected_tags}});
       }
     }
 }

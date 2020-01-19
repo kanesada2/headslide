@@ -3,11 +3,13 @@
     <header class="post-header">
       <h2 class="post-title">{{article.title}}</h2>
 
-      <p class="post-meta">
+      <div class="post-meta">
         By <a class="post-author" :href="'user/' + article.author.id">{{article.author.name}}</a>
-        <a v-for="tag_relation in article.tag_relations" :key="tag_relation.tag.id" :href="'tag/' + tag_relation.tag.id" class="post-tag">{{tag_relation.tag.name}}
-        </a>
-      </p>
+        <v-chip v-for="tag_relation in article.tag_relations" :key="tag_relation.tag.id" 
+        :to="'tag/' + tag_relation.tag.id" color="cyan darken-1" dark>
+          {{tag_relation.tag.name}}
+        </v-chip>
+      </div>
     </header>
         <div class="post-description">
           <SlideDescription v-for="slide in article.slides" :key=slide.id :slide=slide class="slide-description" ref="slideDetail">

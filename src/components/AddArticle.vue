@@ -10,13 +10,36 @@
         required
         dark
       ></v-text-field>
-      <v-text-field
-        v-model="info.category"
-        :counter="20"
-        label="Category"
-        required
-        dark
-      ></v-text-field>
+      <v-layout align-baseline>
+        <v-col cols="12" sm="9">
+          <v-text-field
+            v-model="targetTag.name"
+            :counter="20"
+            label="Tag"
+            required
+            dark
+          ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="3">
+          <v-btn 
+          color="teal lighten-1"
+          class="mr-3"
+          dark
+          @click="appendTag"
+          >追加</v-btn>
+        </v-col>
+      </v-layout>
+      <v-chip
+          v-for="tag in info.tags"
+          :key="tag"
+          class="ma-2"
+          color="cyan darken"
+          dark
+          @click="editTag"
+      >
+        {{tag.name}}
+        <v-icon right>mdi-pencil</v-icon>
+      </v-chip>
       <v-layout class="button-ctrl justify-center">
         <v-btn
           color="primary"
@@ -53,14 +76,16 @@ export default {
   },
   data() {
     return {
+      tagCount: 0,
       slideCount : 0,
       info: {
         title: "",
-        category: "",
+        tags: [],
       },
       slides: [
 
-      ]
+      ],
+      targetTag: null
     };
   },
   methods:{
@@ -74,7 +99,6 @@ export default {
         this.slides.push(newSlide)
         this.slideCount++
         this.$eventHub.$emit('SlideSelected', newSlide)
-        console.log(this.slides);
       },
       delSlide(no){
         const targetIndex = this.slides.findIndex((slide) => slide.no == no)
@@ -82,6 +106,12 @@ export default {
       },
       post() {
 
+      },
+      appendTag(){
+        this.tags.push(this.targetTag)
+      },
+      editTag(e){
+        this.targetTag = e
       }
     }
 }

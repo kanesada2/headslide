@@ -48,12 +48,19 @@ let router = new Router({
         }
       },
       {
-        path: '/login',
+        path: '/tags/:id',
         components: {
           sidebar: Tagdetail,
           content: Tags
         }
-      }
+      },
+      { 
+        path: '/search',
+        components: {
+            sidebar: Search,
+            content: ArticleList
+        }
+      },
     ]
   })
   export default router;

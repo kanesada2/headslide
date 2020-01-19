@@ -4,11 +4,14 @@
   <section class="post" v-for="article in articles" :key="article.id">
     <header class="post-header">
       <router-link :to="{ name : 'post', params : { id: article.id }}" class="post-title">{{article.title}}</router-link>
-      <p class="post-meta">
+      <div class="post-meta">
         By <a class="post-author" :href="'user/' + article.author.id">{{article.author.name}}</a>
-      <a v-for="tag_relation in article.tag_relations" :key="tag_relation.tag.id" :href="'tag/' + tag_relation.tag.id" class="post-tag">{{tag_relation.tag.name}}
-      </a>
-      </p>
+
+        <v-chip v-for="tag_relation in article.tag_relations" :key="tag_relation.tag.id" 
+        :to="'tag/' + tag_relation.tag.id" color="cyan darken-1" dark>
+          {{tag_relation.tag.name}}
+        </v-chip>
+      </div>
     </header>
   </section>
 </div>
@@ -17,8 +20,8 @@
 <script>
 import gql from "graphql-tag";
 const LIST_ARTICLES = gql`
-  query listArticles {
-    articles {
+  query listArticles ($tags: [Int!]){
+     articles(where: {tag_relations: {tag_id: {_in: $tags}}}){
       id
       title
       created_at
@@ -48,7 +51,13 @@ export default {
   },
   apollo: {
     articles: {
-      query:LIST_ARTICLES
+      query:LIST_ARTICLES,
+      variables(){
+        return {
+          tags: this.$route.query.tags,
+          keyword: this.$route.query.keyword
+        }
+      }
     }
   }
 }
@@ -101,21 +110,9 @@ li {
     font-size: 90%;
     margin: 0;
 }
-
-.post-tag {
-    margin: 0 0.1em;
-    padding: 0.3em 1em;
-    color: #fff !important;
-    background: #00a8ff;;
-    font-size: 80%;
-    border-radius: 16px;
-}
-
-.post-tag:hover,
-.post-tag:focus {
-    text-decoration: none;
-}
 .post-author {
   color: #42b983 !important;
+  font-size : 110%;
+  margin: 0 .5em 0 0;
 }
 </style>
