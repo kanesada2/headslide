@@ -21,7 +21,7 @@
 import gql from "graphql-tag";
 const LIST_ARTICLES = gql`
   query listArticles ($tags: [Int!]){
-     articles(where: {tag_relations: {tag_id: {_in: $tags}}}){
+     articles(where: {tag_relations: {tag_id: {_in: $tags}}}, limit: 20){
       id
       title
       created_at
