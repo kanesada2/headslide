@@ -13,9 +13,12 @@ export default {
     methods: {
         onAuthStateChanged () {
             this.$firebase.auth().onAuthStateChanged( user => {
-            if(!user) return;
-            this.$auth.login();
-            this.$router.push(this.$route.query.redirect);
+            if(!user){
+                 this.$auth.logout()
+                 return;
+            }
+            this.$auth.login()
+            this.$router.push({path:"/add", meta: { requiresAuth: true, loggedIn:true }}).catch(err => {if(err)console.log(err)})
             })
         },
         signIn () {
