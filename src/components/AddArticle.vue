@@ -13,7 +13,7 @@
       <v-layout align-baseline>
         <v-col cols="12" sm="9">
           <v-text-field
-            v-model="targetTag.name"
+            v-model="targetTag"
             :counter="20"
             label="Tag"
             required
@@ -22,7 +22,7 @@
           </v-col>
           <v-col cols="12" sm="3">
           <v-btn 
-          color="teal lighten-1"
+          color="primary"
           class="mr-3"
           dark
           @click="appendTag"
@@ -33,12 +33,11 @@
           v-for="tag in info.tags"
           :key="tag"
           class="ma-2"
-          color="cyan darken"
+          color="cyan darken-1"
           dark
-          @click="editTag"
+          @click="editTag(tag)"
       >
-        {{tag.name}}
-        <v-icon right>mdi-pencil</v-icon>
+        {{tag}}
       </v-chip>
       <v-layout class="button-ctrl justify-center">
         <v-btn
@@ -85,7 +84,7 @@ export default {
       slides: [
 
       ],
-      targetTag: null
+      targetTag: ""    
     };
   },
   methods:{
@@ -108,10 +107,15 @@ export default {
 
       },
       appendTag(){
-        this.tags.push(this.targetTag)
+        this.info.tags.push(this.targetTag)
+        this.targetTag = ""
       },
       editTag(e){
+        this.delTag(e)
         this.targetTag = e
+      },
+      delTag(e){
+        this.info.tags.splice(this.info.tags.findIndex((tag) => tag == e), 1)
       }
     }
 }
