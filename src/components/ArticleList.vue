@@ -8,7 +8,7 @@
         By <a class="post-author" :href="'user/' + article.author.id">{{article.author.name}}</a>
 
         <v-chip v-for="tag_relation in article.tag_relations" :key="tag_relation.tag.id" 
-        :to="'tag/' + tag_relation.tag.id" color="cyan darken-1" dark>
+        :to="'tag/' + tag_relation.tag.id" color="cyan darken-1" dark small>
           {{tag_relation.tag.name}}
         </v-chip>
       </div>

@@ -35,6 +35,8 @@
           class="ma-2"
           color="cyan darken-1"
           dark
+          close
+          @click:close="delTag(tag)"
           @click="editTag(tag)"
       >
         {{tag}}
