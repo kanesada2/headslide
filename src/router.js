@@ -5,7 +5,7 @@ import AddSlide from '@/components/AddSlide.vue'
 import AddArticle from '@/components/AddArticle.vue'
 import Article from '@/components/Article.vue'
 import Tags from '@/components/Tags.vue'
-import Tagdetail from '@/components/Tagdetail.vue'
+//import Tagdetail from '@/components/Tagdetail.vue'
 import Search from '@/components/Search.vue'
 import Slide from '@/components/Slide.vue'
 import Login from '@/components/Login.vue'
@@ -47,13 +47,13 @@ let router = new Router({
           content: Login
         }
       },
-      {
+      /*{
         path: '/tags/:id',
         components: {
           sidebar: Tagdetail,
           content: Tags
         }
-      },
+      },*/
       { 
         path: '/search',
         components: {
